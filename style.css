@@ -63,9 +63,21 @@ body {
   color: #38bdf8;
 }
 
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #e5e7eb;
+  transition: 0.3s ease;
+}
+
+.menu-toggle:hover {
+  color: #38bdf8;
+}
+
 /* ---------------- HERO ---------------- */
 .hero {
-  height: 100vh;
+  height: calc(100vh - 60px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,6 +145,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  justify-content: center;
 }
 
 .skill-box span {
@@ -216,6 +229,68 @@ h2 {
   transform: translateY(-3px);
 }
 
+/* ---------------- CERTIFICATIONS ---------------- */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.cert-card {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 16px;
+  transition: 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+}
+
+.cert-icon {
+  font-size: 2rem;
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+
+.cert-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.cert-card .platform {
+  color: #38bdf8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.cert-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 15px;
+  padding: 8px 18px;
+  
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.cert-link:hover {
+  background: #0ea5e9;
+  transform: translateY(-3px);
+}
+
 /* ---------------- CONTACT ---------------- */
 .contact {
   text-align: center;
@@ -277,9 +352,34 @@ footer {
 }
 
 /* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 1024px) {
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
   .nav-menu {
-    gap: 15px;
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    background: rgba(2, 6, 23, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .nav-menu.active {
+    left: 0;
   }
 
   .hero h1 {
@@ -290,7 +390,7 @@ footer {
     padding: 60px 6%;
   }
 
-  .projects {
+  .projects, .certifications-grid {
     grid-template-columns: 1fr;
   }
 
@@ -312,6 +412,10 @@ footer {
     width: 50px;
     height: 50px;
     font-size: 1.2rem;
+  }
+
+  .nav-menu li {
+    margin: 15px 0;
   }
 }
 
